@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- 카카오톡 미리보기 및 브라우저 탭 제목 설정 -->
-<meta property="og:title" content="RT-130-3 MP3">
+<meta property="og:title" content="Mirae-A 음원 플레이어">
 <meta property="og:description" content="클릭하여 교재 음원을 재생하세요">
-<title>RT-70-3 MP3</title>
+<!-- 초기 기본 타이틀 (자바스크립트가 실행되면서 현재 저장소 이름으로 자동 변경됩니다) -->
+<title>음원 플레이어</title>
 <style>
   body { font-family: 'Malgun Gothic', sans-serif; max-width: 650px; margin: 20px auto; padding: 0 15px; background: #f8f9fa; }
   h2 { color: #222; border-bottom: 2px solid #0066cc; padding-bottom: 8px; }
@@ -31,13 +32,15 @@
 
 <script>
 const USER = "jonmiraen72";
-const REPO = location.pathname.split('/')[1] || "RT-70-3";
+const REPO = location.pathname.split('/')[1] || "RT-130-3";
 const API_BASE = `https://api.github.com/repos/${USER}/${REPO}/contents`;
 
 let currentTracks = [];
 let currentIndex = -1;
 const audio = document.getElementById("audioPlayer");
 
+// [수정] 브라우저 새 탭 타이틀과 화면 상단 제목을 현재 저장소 이름(REPO)에 맞게 자동 설정
+document.title = `${REPO} MP3`;
 document.getElementById("title").innerText = `${REPO} 음원 목록`;
 
 audio.addEventListener("ended", () => {
